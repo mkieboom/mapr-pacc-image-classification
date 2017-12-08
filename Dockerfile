@@ -15,6 +15,13 @@ RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm && \
     yum clean all && \
     rm -rf /var/cache/yum
 
+RUN echo "proxy=http://172.16.4.20:3128" >> /etc/yum.conf && \
+    echo "export HTTP_PROXY=http://172.16.4.20:3128" >> ~/.bash_profile && \
+    echo "export HTTPS_PROXY=http://172.16.4.20:3128" >> ~/.bash_profile && \
+    echo "export http_proxy=http://172.16.4.20:3128" >> ~/.bash_profile && \
+    echo "export https_proxy=http://172.16.4.20:3128" >> ~/.bash_profile && \
+    source ~/.bash_profile
+
 # Install python
 #RUN apk upgrade --no-cache \
 #  && apk add --no-cache \
@@ -44,6 +51,6 @@ RUN pip3.6 install -e darkflow/
 
 WORKDIR /darkflow/
 CMD sudo flow --imgdir $YOLO_INPUT --model $YOLO_CONFIG --load $YOLO_WEIGHTS --threshold 0.1 --json
-CMD /bin/bash
+#CMD /bin/bash
 
 
