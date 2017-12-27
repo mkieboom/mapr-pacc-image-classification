@@ -42,8 +42,7 @@ RUN pip3.6 install opencv-python
 RUN git clone https://github.com/thtrieu/darkflow
 RUN pip3.6 install -e darkflow/
 
+# Run the image classification library for both a image as well as json output
 WORKDIR /darkflow/
-CMD sudo flow --imgdir $YOLO_INPUT --model $YOLO_CONFIG --load $YOLO_WEIGHTS --threshold 0.1 --json
-#CMD /bin/bash
-
-
+CMD sudo -E flow --imgdir $YOLO_INPUT --model $YOLO_CONFIG --load $YOLO_WEIGHTS --threshold 0.1 --json && \
+    sudo -E flow --imgdir $YOLO_INPUT --model $YOLO_CONFIG --load $YOLO_WEIGHTS --threshold 0.1
