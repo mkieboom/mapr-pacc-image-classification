@@ -35,5 +35,4 @@ RUN chmod +x /imageclassification.sh
 WORKDIR /darkflow/
 
 # Run the image classification
-#CMD sudo -E /imageclassification.sh
-CMD /bin/bash
+CMD sudo -E /imageclassification.sh
