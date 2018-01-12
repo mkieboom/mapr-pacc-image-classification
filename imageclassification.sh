@@ -16,5 +16,6 @@ chmod 666 $JSON_FILENAME
 sed -i '1s|^|{"filename": "'$YOLO_IMAGE_FILENAME'","objects":|' $JSON_FILENAME
 sed -i '1s|$|}|' $JSON_FILENAME
 
-# Move the image classification output to $$YOLO_OUTPUT
-mv /tmp/image_classification/out/* $YOLO_OUTPUT
+# Move the json to $YOLO_OUTPUT_JSON and the image to $YOLO_OUTPUT_IMAGE
+mv /tmp/image_classification/out/*.json $YOLO_OUTPUT_JSON
+mv /tmp/image_classification/out/* $YOLO_OUTPUT_IMAGE
